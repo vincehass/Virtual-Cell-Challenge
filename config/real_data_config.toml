@@ -1,0 +1,29 @@
+# Real Virtual Cell Challenge Data Configuration
+# Configured for the user's actual VCC training dataset
+
+# Dataset paths - pointing to your real data
+[datasets]
+vcc_training = "data/vcc_data/adata_Training.h5ad"
+
+# Training specifications
+[training]
+vcc_training = "train"
+
+# Zero-shot learning examples (since no cell_type column, we'll use perturbation-based splits)
+# Hold out some high-count perturbations for testing
+[zeroshot]
+# We can create artificial "cell types" based on perturbation effectiveness or guide types
+# For now, we'll use few-shot learning instead
+
+# Few-shot learning - hold out specific perturbations for validation/testing
+[fewshot]
+[fewshot."vcc_training.main"]
+# Hold out some well-represented perturbations for validation and testing
+val = ["TMSB4X", "PRCP", "TADA1"]  # High-count perturbations for validation
+test = ["HIRA", "IGF2R", "NCK2", "MED13", "MED12"]  # Additional perturbations for testing
+
+# Note: Configuration adapted for your data structure:
+# - Uses 'target_gene' column instead of 'gene'
+# - Uses 'batch' column instead of 'gem_group'  
+# - Single cell type experiment (no cell_type splits)
+# - 151 total perturbations with 38K+ control cells 

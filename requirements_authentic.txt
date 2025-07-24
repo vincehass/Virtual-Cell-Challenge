@@ -1,0 +1,70 @@
+# 🧬 Authentic STATE Implementation Requirements
+# Virtual Cell Challenge - Production Ready Dependencies
+
+# Core ML/DL frameworks
+torch>=2.0.0,<2.2.0
+torchvision>=0.15.0,<0.17.0
+torchaudio>=2.0.0,<2.2.0
+
+# Scientific computing
+numpy>=1.21.0,<1.25.0
+scipy>=1.9.0,<1.12.0
+pandas>=1.5.0,<2.1.0
+scikit-learn>=1.2.0,<1.4.0
+
+# Single-cell specific
+anndata>=0.9.1,<0.11.0
+scanpy>=1.9.0,<1.10.0
+mudata>=0.2.0,<0.3.0
+
+# Visualization
+matplotlib>=3.6.0,<3.8.0
+seaborn>=0.12.0,<0.13.0
+plotly>=5.15.0,<5.18.0
+bokeh>=3.0.0,<3.3.0
+
+# ML Ops and experiment tracking
+wandb>=0.15.0,<0.17.0
+mlflow>=2.5.0,<2.8.0
+optuna>=3.2.0,<3.5.0
+
+# Data processing
+h5py>=3.8.0,<3.10.0
+zarr>=2.14.0,<2.17.0
+dask>=2023.5.0,<2023.12.0
+
+# Utilities
+tqdm>=4.65.0,<4.67.0
+pyyaml>=6.0,<6.1
+toml>=0.10.2,<0.11.0
+click>=8.1.0,<8.2.0
+rich>=13.3.0,<13.8.0
+
+# Statistical analysis
+statsmodels>=0.14.0,<0.15.0
+pingouin>=0.5.3,<0.6.0
+
+# Performance
+numba>=0.57.0,<0.59.0
+joblib>=1.2.0,<1.4.0
+
+# Development and testing
+pytest>=7.4.0,<7.5.0
+pytest-cov>=4.1.0,<4.2.0
+black>=23.3.0,<23.12.0
+flake8>=6.0.0,<6.2.0
+mypy>=1.4.0,<1.7.0
+
+# Jupyter and interactive
+jupyter>=1.0.0,<1.1.0
+jupyterlab>=4.0.0,<4.1.0
+ipywidgets>=8.0.0,<8.2.0
+
+# Optional GPU acceleration (install manually if needed)
+# cupy-cuda11x>=12.0.0,<12.3.0  # For CUDA 11.x
+# cupy-cuda12x>=12.0.0,<12.3.0  # For CUDA 12.x
+
+# Web and API
+fastapi>=0.100.0,<0.105.0
+uvicorn>=0.22.0,<0.24.0
+streamlit>=1.24.0,<1.28.0 

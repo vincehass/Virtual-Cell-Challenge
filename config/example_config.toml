@@ -1,0 +1,73 @@
+# Virtual Cell Challenge - Example Configuration
+# This file demonstrates how to configure datasets and experimental splits
+# for the cell-load data loading pipeline
+
+# Dataset paths - maps dataset names to their directories or files
+[datasets]
+replogle = "/path/to/replogle_dataset/"  # Directory containing multiple .h5ad files
+jurkat = "/path/to/jurkat_single_file.h5ad"  # Single .h5ad file
+tahoe = "/path/to/tahoe_100m_subset/"  # Large-scale perturbation dataset
+synthetic = "/path/to/synthetic_data/"  # Synthetic test data
+
+# Training specifications
+# All cell types in a dataset automatically go into training (excluding zeroshot/fewshot overrides)
+[training]
+replogle = "train"  # Include this dataset in training
+jurkat = "train"    # Include this dataset in training
+tahoe = "train"     # Include this dataset in training
+synthetic = "train" # Include this dataset in training
+
+# Zero-shot specifications - entire cell types go to val or test
+# Format: "dataset.cell_type" = "split"
+[zeroshot]
+"replogle.jurkat" = "test"      # Hold out all Jurkat cells from Replogle dataset for testing
+"jurkat.rpe1" = "val"           # Hold out RPE1 cells for validation
+"tahoe.k562" = "test"           # Hold out K562 cells from Tahoe dataset for testing
+
+# Few-shot specifications - explicit perturbation lists
+# Format: [fewshot."dataset.cell_type"]
+# Within each cell type, specific perturbations are held out for val/test
+
+[fewshot]
+
+# Replogle dataset, RPE1 cell type few-shot configuration
+[fewshot."replogle.rpe1"]
+val = ["AARS", "ABCB1", "ABCE1"]  # Perturbations for validation
+test = ["AARS", "NUP107", "RPUSD4", "TUBA1B", "RPL11"]  # Perturbations for testing (can overlap with val)
+# All other perturbations in replogle.rpe1 automatically go to training
+
+# Jurkat dataset, K562 cell type few-shot configuration  
+[fewshot."jurkat.k562"]
+val = ["GENE1", "GENE2", "GENE3"]
+test = ["GENE4", "GENE5", "GENE6", "GENE7"]
+
+# Tahoe dataset, HeLa cell type few-shot configuration
+[fewshot."tahoe.hela"]
+val = ["TP53", "MYC", "EGFR"]
+test = ["KRAS", "PIK3CA", "AKT1", "MTOR", "PTEN"]
+
+# Synthetic dataset for testing pipeline
+[fewshot."synthetic.test_cells"]
+val = ["PERT_A", "PERT_B"]
+test = ["PERT_C", "PERT_D", "PERT_E"]
+
+# Additional configuration notes:
+# 
+# 1. Control cell mapping is done within the same file - a perturbed cell 
+#    will not get mapped to a control cell from a different h5 file, even
+#    if it has matched covariates.
+#
+# 2. Zero-shot and few-shot configurations override training assignments.
+#    If a cell type is in zeroshot, it won't be used for training.
+#    If perturbations are in fewshot, they're held out from training.
+#
+# 3. Cell barcodes can be enabled by adding data.kwargs.barcode=true 
+#    to your command line arguments.
+#
+# 4. Common data loading parameters:
+#    - data.kwargs.embed_key=X_hvg (use highly variable genes embedding)
+#    - data.kwargs.embed_key=X_state (use STATE model embedding)  
+#    - data.kwargs.output_space=gene (predict gene expression)
+#    - data.kwargs.basal_mapping_strategy=random (random control mapping)
+#    - data.kwargs.basal_mapping_strategy=batch (within-batch control mapping)
+#    - data.kwargs.n_basal_samples=1 (number of control cells per perturbation) 

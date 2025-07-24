@@ -1,0 +1,32 @@
+{
+    "data": {
+        "max_cells": 5000,
+        "max_genes": 1000,
+        "min_cells_per_batch": 10
+    },
+    "model": {
+        "se_config": {
+            "embed_dim": 128,
+            "n_heads": 4,
+            "n_layers": 3,
+            "dropout": 0.1
+        },
+        "st_config": {
+            "state_dim": 64,
+            "perturbation_dim": 64,
+            "n_heads": 2,
+            "n_layers": 2,
+            "dropout": 0.1
+        }
+    },
+    "training": {
+        "epochs": 50,
+        "batch_size": 16,
+        "learning_rate": 1e-3,
+        "weight_decay": 1e-4
+    },
+    "evaluation": {
+        "sample_size": 200,
+        "bootstrap_samples": 100
+    }
+}

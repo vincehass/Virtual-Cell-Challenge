@@ -174,3 +174,111 @@ cython_debug/
 .pypirc
 
 .DS_Store
+
+# =============================================================================
+# PROJECT SPECIFIC IGNORES
+# =============================================================================
+
+# Data directories - exclude all data files
+data/
+datasets/
+*.h5ad
+*.h5
+*.csv
+*.tsv
+*.txt.gz
+*.parquet
+*.feather
+
+# Results and outputs
+results/
+outputs/
+logs/
+plots/
+figures/
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.svg
+
+# Virtual environments (project-specific)
+venv_*/
+vcc_env/
+cell_load_env/
+authentic_state_env/
+
+# Weights & Biases (W&B) - credentials and logs
+wandb/
+.wandb/
+wandb-metadata.json
+wandb-summary.json
+wandb.log
+*.wandb
+
+# W&B credentials and API keys
+.netrc
+wandb_api_key.txt
+wandb_config.yaml
+wandb_credentials.json
+
+# Model checkpoints and weights
+*.pth
+*.pt
+*.ckpt
+*.model
+checkpoints/
+models/
+saved_models/
+
+# Temporary and cache files
+tmp/
+temp/
+cache/
+.cache/
+*.tmp
+*.temp
+
+# Jupyter and notebook outputs
+*.ipynb_checkpoints/
+.jupyter/
+
+# Configuration files with sensitive data
+config_local.py
+config_private.py
+secrets.py
+credentials.json
+.env.local
+.env.production
+
+# Large files and archives
+*.zip
+*.tar.gz
+*.tar
+*.rar
+*.7z
+
+# System files
+Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE and editor files
+.vscode/settings.json
+.vscode/launch.json
+.idea/
+*.swp
+*.swo
+*~
+
+# Profiling and benchmarking
+*.prof
+*.lprof
+profile_*
+benchmark_*
+
+# Build artifacts specific to project
+build/
+dist/
+*.egg-info/
